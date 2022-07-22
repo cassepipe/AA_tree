@@ -18,6 +18,7 @@ Also, the implementation tests if the tree needs rebabalancing after a node dele
 need rebalancing (removal of a red node or of a necessarily black single parent node that is).
 
 The class template also define a `print_dot` method that creates a `tree.dot` in the cwd that you can read with `xdot`
-`sudo apt install xdot`
+
+Install with `sudo apt install xdot`
 
 Since the DOT format is just text, you can have a look at the file to see how create horizontal links and color some nodes in red.
