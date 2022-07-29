@@ -48,6 +48,29 @@ void printInsertionStatus(It it, bool success)
 using ft::AA_tree;
 int main()
 {
+	if (1)
+	{
+		using ft::AA_tree;
+
+		AA_tree<int, string> tree;
+
+		tree.insert(1, string("one"));
+		tree.insert(2, string("two"));
+		tree.insert(30, string("thirty"));
+		tree.insert(3, string("three"));
+		tree.insert(4, string("four"));
+		tree.insert(0, string("zero"));
+		tree.insert(7, string("seven"));
+		tree.insert(20, string("twenty"));
+
+
+		tree.remove(0);
+
+		tree.print_dot();
+
+
+		//tree.print_dot();
+	}
 	if (0)
 	{
 		map<int, NotDefaultConstructiblePerson> my_map;
@@ -76,28 +99,6 @@ int main()
 		tree.insert(1, NotDefaultConstructiblePerson(42, "Jean"));
 		tree.insert(1, NotDefaultConstructiblePerson(23, "Thomas"));
 		tree.print_dot();
-	}
-	if (1)
-	{
-		using ft::AA_tree;
-
-		AA_tree<int, string> tree;
-
-		tree.insert(1, string("one"));
-		tree.insert(2, string("two"));
-		tree.insert(30, string("thirty"));
-		tree.insert(3, string("three"));
-		tree.insert(4, string("four"));
-		tree.insert(0, string("zero"));
-		tree.insert(7, string("seven"));
-		tree.insert(20, string("twenty"));
-
-
-		tree.remove(0);
-
-		tree.print_dot();
-
-		//tree.print_dot();
 	}
 
 	return 0;

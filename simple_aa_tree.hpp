@@ -75,7 +75,8 @@ class AA_tree
 
 	node_pointer skew_(node_pointer root)
 	{
-		if (root->left->level == root->level) // red node to our left?
+		if (root->level &&
+				root->left->level == root->level) // red node to our left?
 			return rotate_right_(root);
 		else
 			return root; // else no change neeeded
@@ -93,7 +94,8 @@ class AA_tree
 
 	node_pointer split_(node_pointer root)
 	{
-		if (root->right->right->level == root->level) // 2 red nodes on our right ?
+		if (root->level &&
+				root->right->right->level == root->level) // 2 red nodes on our right ?
 			return rotate_left_(root);
 		else
 			return root; //else no change needed
@@ -174,9 +176,9 @@ class AA_tree
 		if (node == NIL) // fell out of tree, key does not exist
 			return node; // result in a no-op
 		else if (k < node->key)
-			node = remove_(k, node->left);
+			node->left = remove_(k, node->left);
 		else if (k > node->key)
-			node = remove_(k, node->right);
+			node->right = remove_(k, node->right);
 		else
 		{
 			if (node->right == NIL && node->left == NIL) // It's a leaf node, remove it
