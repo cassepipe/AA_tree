@@ -61,15 +61,28 @@ int main()
 		tree.insert(4, string("four"));
 		tree.insert(0, string("zero"));
 		tree.insert(7, string("seven"));
-		tree.insert(20, string("twenty"));
-
-
-		tree.remove(0);
-
-		tree.print_dot();
-
+		tree.insert(16, string("sixteen"));
+		tree.insert(8, string("eight"));
 
 		//tree.print_dot();
+		//
+		tree.remove(4);
+		tree.remove(3);
+		tree.remove(0);
+		tree.remove(2);
+
+		//tree.insert(20, string("twenty"));
+
+		//tree.remove(0);
+		//tree.remove(0);
+
+		//tree.remove(4);
+
+		//tree.insert(0, "zero");
+		//tree.insert(4, "four");
+		
+		tree.print_dot();
+		
 	}
 	if (0)
 	{

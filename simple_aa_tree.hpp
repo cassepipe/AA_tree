@@ -140,15 +140,23 @@ class AA_tree
 
 	node_pointer in_order_successor_(node_pointer node)
 	{
-		while (node->right != NIL)
+		if (node->right == NIL)
+			return node;
+		else
 			node = node->right;
+		while (node->left != NIL)
+			node = node->left;
 		return node;
 	}
 
 	node_pointer in_order_predecessor_(node_pointer node)
 	{
-		while (node->left != NIL)
+		if (node->left == NIL)
+			return node;
+		else
 			node = node->left;
+		while (node->right != NIL)
+			node = node->right;
 		return node;
 	}
 
@@ -173,13 +181,13 @@ class AA_tree
 	// This implementation does not bother with special cases that do not need rebalancing
 	node_pointer remove_(Key k, node_pointer node)
 	{
-		if (node == NIL) // fell out of tree, key does not exist
-			return node; // result in a no-op
-		else if (k < node->key)
-			node->left = remove_(k, node->left);
+		if (node == NIL)                // Fell out of tree, key does not exist
+			return node;                                               // No-op
+		else if (k < node->key) 
+			node->left = remove_(k, node->left);        // Look in left subtree
 		else if (k > node->key)
-			node->right = remove_(k, node->right);
-		else
+			node->right = remove_(k, node->right);     // Look in right subtree
+		else                                                       //Found it !
 		{
 			if (node->right == NIL && node->left == NIL) // It's a leaf node, remove it
 			{
@@ -187,7 +195,13 @@ class AA_tree
 				--size_;
 				return NIL;
 			}
-			else // Find successor, copy its values and remove successor instead
+			else if (node->left == NIL) // No left child ? Means it is a black leaf node. Replace with its red child
+			{
+				node->key = node->right->key;
+				node->value = node->right->value;
+				node->right = remove_(node->right->key, node->right);
+			}
+			else // Find succesor, copy its values and remove succesor instead
 			{
 				node_pointer successor = in_order_successor_(node);
 				node->key = successor->key;
@@ -251,6 +265,11 @@ class AA_tree
 			ss << node->key << " [label=< <b>" << node->key << "</b><br/> <sub>" << node->level << "</sub>>]\n\t";
 			if (node->left != NIL)
 			{
+				if (node->left->level == node->level)
+				{
+					ss << "{rank=same; " << node->key << "; " << node->left->key << "}\n\t";
+					ss << node->left->key << " [color=red]\n\t";
+				}
 				ss << node->key << " -> " << node->left->key << "\n\t";
 				print_node(ss, node->left);
 			}
@@ -274,10 +293,14 @@ class AA_tree
 	{
 		static int n;
 
+		print_dot(++n);
+	}
+
+	void print_dot(int n)
+	{
 		std::stringstream ss;
 		print_node(ss, root_);
 
-		n = 1;
 		std::stringstream title;
 		title << DEFAULT_FILENAME << n << ".dot";
 		std::ofstream file(title.str().c_str());

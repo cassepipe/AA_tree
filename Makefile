@@ -2,6 +2,8 @@
 ##	VARIABLES	##
 ##################
 
+SHELL			=	zsh
+
 NAME			=	a.out
 
 CXX				=	c++
@@ -59,5 +61,6 @@ print_name:
 
 run:			all
 				./$(NAME)
+				./visu.zsh
 
 .PHONY:			all clean fclean re print_name run

@@ -1,17 +1,4 @@
 digraph {
 
-	4 [label=< <b>4</b><br/> <sub>3</sub>>]
-	4 -> 2
-	2 [label=< <b>2</b><br/> <sub>2</sub>>]
-	2 -> 1
-	1 [label=< <b>1</b><br/> <sub>1</sub>>]
-	2 -> 3
-	3 [label=< <b>3</b><br/> <sub>1</sub>>]
-	4 -> 20
-	20 [label=< <b>20</b><br/> <sub>2</sub>>]
-	20 -> 7
-	7 [label=< <b>7</b><br/> <sub>1</sub>>]
-	20 -> 30
-	30 [label=< <b>30</b><br/> <sub>1</sub>>]
 	
 }
